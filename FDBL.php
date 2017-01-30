@@ -210,66 +210,6 @@ class FDBL
 		$data = $this->select($table, $array, $conditionArray);
 		return $this->fetchArray($data);
 	}
-
-	// Authenticate Session
-	public function activateSession()
-	{
-		if (session_status() == PHP_SESSION_NONE) {
-		    session_start();
-		}
-	}
-
-	// Authenticate Session
-	public function authenticate($InOrOut = 'out')
-	{
-		 $this->activateSession();
-		 if($InOrOut == 'out')
-		 {
-	      	 if(!isset($_SESSION['isUser']))
-				header('location:login.php');
-		 }
-		 else
-		 	if(isset($_SESSION['isUser']))
-				header('location:home.php');
-
-	}
-
-	// Logout the Session
-	public function logout()
-	{
-		$this->activateSession();
-		session_destroy();
-		return true;
-	}
-
-	// Alert the Session Message
-	public function setSessionMsg($value, $key = 'result')
-	{	
-		$this->activateSession();
-		$_SESSION[$key] = $value;
-	}
-
-	// Return the Session Message
-	public function getSessionMsg($key = 'result')
-	{	
-		$this->activateSession();
-		if(isset($_SESSION[$key]))
-	    {
-		    return $_SESSION[$key];
-	    }
-	}
-
-	// Alert the Session Message
-	public function alertSessionMsg($key = 'result')
-	{	
-		$this->activateSession();
-		if(isset($_SESSION[$key]))
-	    {
-		    echo '<script type="text/javascript"> alert("' . $_SESSION[$key] . '"); </script>';
-		  	unset($_SESSION[$key]);
-
-	    }
-	}
 }
 
 ?>
